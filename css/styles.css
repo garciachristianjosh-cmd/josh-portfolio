@@ -1,0 +1,106 @@
+/* styles.css - Section 1: design tokens. Change colors/sizes HERE. */
+@font-face { font-family: "Bricolage Grotesque"; src: url("../fonts/BricolageGrotesque-Variable.woff2") format("woff2"); font-weight: 200 800; font-display: swap; }
+@font-face { font-family: "JetBrains Mono"; src: url("../fonts/JetBrainsMono-Variable.woff2") format("woff2"); font-weight: 100 800; font-display: swap; }
+
+:root {
+  --paper: #F7F7F5; --ink: #0C0C0C; --muted: #5A5A56; --rule: #D6D6D0;
+  --sans: "Bricolage Grotesque", system-ui, sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --s1: 4px; --s2: 8px; --s3: 16px; --s4: 24px; --s5: 40px; --s6: 64px; --s7: 96px;
+  --gutter: clamp(20px, 5vw, 64px);
+}
+@media (prefers-color-scheme: dark) {
+  :root { --paper: #0C0C0C; --ink: #F2F2F0; --muted: #A3A39E; --rule: #2C2C2A; }
+}
+/* The inverted Projects section: opposite colors of whatever the page is */
+.inverted { --paper: #0C0C0C; --ink: #F2F2F0; --muted: #A3A39E; --rule: #3A3A37; }
+@media (prefers-color-scheme: dark) { .inverted { --paper: #F7F7F5; --ink: #0C0C0C; --muted: #5A5A56; --rule: #C4C4BE; } }
+
+/* Section 2: base */
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 72px; }
+body { margin: 0; background: var(--paper); color: var(--ink); font: 1.0625rem/1.6 var(--sans); }
+h1, h2, h3, p, ul { margin: 0; padding: 0; }
+ul { list-style: none; }
+a { color: inherit; text-underline-offset: 4px; text-decoration-thickness: 1px; }
+a:hover { text-decoration-thickness: 2px; }
+:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+.mono { font: 0.8125rem/1.4 var(--mono); letter-spacing: 0.02em; color: var(--muted); }
+.skip { position: absolute; left: -999px; } .skip:focus { left: var(--s3); top: var(--s3); background: var(--ink); color: var(--paper); padding: var(--s2) var(--s3); z-index: 10; }
+
+/* Section 3: nav (mobile first: full-screen menu) */
+.bar { position: sticky; top: 0; z-index: 5; display: flex; justify-content: space-between; align-items: center; padding: var(--s3) var(--gutter); background: var(--paper); border-bottom: 1px solid var(--rule); }
+.brand { font-weight: 700; text-decoration: none; }
+.menu-btn { font: inherit; background: none; color: inherit; border: 1px solid var(--ink); padding: var(--s1) var(--s3); cursor: pointer; }
+nav { position: fixed; inset: 60px 0 0 0; background: var(--paper); padding: var(--s5) var(--gutter); display: none; }
+nav.open { display: block; }
+nav li { border-bottom: 1px solid var(--rule); }
+nav a { display: block; padding: var(--s3) 0; font-size: 1.5rem; text-decoration: none; }
+@media (min-width: 48em) {
+  .menu-btn { display: none; }
+  nav { position: static; display: block; padding: 0; background: none; }
+  nav ul { display: flex; gap: var(--s5); }
+  nav li { border: 0; } nav a { font-size: 0.9375rem; padding: 0; }
+}
+
+/* Section 4: layout */
+section { padding: var(--s7) var(--gutter); background: var(--paper); color: var(--ink); }
+section > * { max-width: 1200px; margin-inline: auto; }
+.head { margin-bottom: var(--s4); }
+.rule { display: block; height: 1px; background: var(--rule); margin-top: var(--s2); }
+h2 { font-size: clamp(1.75rem, 4vw, 3rem); line-height: 1.1; font-weight: 700; margin-bottom: var(--s4); }
+h3 { font-size: 1rem; font-weight: 600; margin: var(--s5) 0 var(--s3); }
+.intro, .prose p, .bench p { max-width: 60ch; }
+.intro { color: var(--muted); margin-bottom: var(--s4); }
+.prose p + p { margin-top: var(--s3); }
+
+/* Hero */
+.hero { min-height: calc(100svh - 60px); display: flex; flex-direction: column; justify-content: center; gap: var(--s4); }
+.hero > * { margin-inline: 0; }
+h1 { font-size: clamp(2.75rem, 9vw, 7rem); line-height: 1; font-weight: 800; letter-spacing: -0.03em; max-width: 14ch; }
+.sub { max-width: 40ch; font-size: 1.25rem; }
+.cue { text-decoration: none; margin-top: var(--s5); }
+
+/* Skills: each <details> is a labeled part */
+.parts { display: grid; gap: var(--s2); grid-template-columns: repeat(auto-fill, minmax(min(100%, 240px), 1fr)); }
+.part { border: 1px solid var(--rule); border-radius: 2px; transition: border-color 150ms var(--ease); }
+.part:hover, .part[open] { border-color: var(--ink); }
+summary { display: flex; align-items: center; gap: var(--s2); padding: var(--s3); cursor: pointer; list-style: none; }
+summary::-webkit-details-marker { display: none; }
+.pname { font-weight: 600; flex: 1; }
+.tag { font-size: 0.75rem; }
+.note { padding: 0 var(--s3) var(--s3); color: var(--muted); font-size: 0.9375rem; }
+.dot { width: 10px; height: 10px; border-radius: 50%; border: 1.5px solid var(--ink); }
+[data-status="familiar"] .dot { background: linear-gradient(90deg, var(--ink) 50%, transparent 50%); }
+[data-status="used in a project"] .dot { background: var(--ink); }
+.legend { margin-top: var(--s4); }
+
+/* Bench notes: a hairline on the left, no box */
+.bench { display: grid; gap: var(--s4); }
+.bench li { border-left: 1px solid var(--ink); padding-left: var(--s3); }
+
+/* Project slots: dashed outline + corner marks; filled ones get a solid outline */
+.slots { display: grid; gap: var(--s3); grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); }
+.slot { position: relative; min-height: 180px; padding: var(--s4); border: 1px dashed var(--muted); border-radius: 2px; display: flex; flex-direction: column; justify-content: space-between; gap: var(--s3); }
+.slot::before, .slot::after { content: ""; position: absolute; width: 10px; height: 10px; border: 1px solid var(--ink); transition: transform 200ms var(--ease); }
+.slot::before { top: -1px; left: -1px; border-right: 0; border-bottom: 0; }
+.slot::after { bottom: -1px; right: -1px; border-left: 0; border-top: 0; }
+.slot:hover::before { transform: translate(-4px, -4px); } .slot:hover::after { transform: translate(4px, 4px); }
+.slot.filled { border-style: solid; border-color: var(--ink); }
+.slot h3 { margin: 0; }
+.caption { margin-top: var(--s4); }
+
+.links { display: grid; gap: var(--s2); font-size: 1.25rem; }
+.links a { display: inline-block; padding: var(--s2) 0; }
+footer { padding: var(--s5) var(--gutter); border-top: 1px solid var(--rule); }
+
+/* Section 5: motion. One orchestrated moment: hero words fade in. Hairlines draw in.
+   All of it is skipped if the visitor prefers reduced motion. */
+@media (prefers-reduced-motion: no-preference) {
+  .js .w { display: inline-block; opacity: 0; transform: translateY(0.3em); animation: up 600ms var(--ease) forwards; animation-delay: calc(var(--i) * 90ms); }
+  .js .rule { transform: scaleX(0); transform-origin: left; transition: transform 600ms var(--ease); }
+  .js .rule.in { transform: none; }
+  @keyframes up { to { opacity: 1; transform: none; } }
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } }

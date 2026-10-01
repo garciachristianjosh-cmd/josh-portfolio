@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Josh — BSIT Student Portfolio</title>
+  <meta name="description" content="Portfolio of Josh, a third-year BSIT student exploring IT through hands-on experimenting. Skills, current learning, and projects as they grow.">
+  <meta property="og:title" content="Josh — BSIT Student Portfolio">
+  <meta property="og:description" content="A third-year BSIT student exploring IT through hands-on experimenting.">
+  <meta property="og:type" content="website">
+  <meta name="color-scheme" content="light dark">
+  <link rel="preload" href="fonts/BricolageGrotesque-Variable.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/styles.css">
+  <script>document.documentElement.classList.add('js')</script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="bar">
+    <a class="brand" href="#top">Josh</a>
+    <button class="menu-btn" aria-expanded="false" aria-controls="nav">Menu</button>
+    <nav id="nav" aria-label="Main">
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#exploring">Exploring</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li data-resume hidden><a href="#" rel="noopener">Resume</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="top" aria-labelledby="hero-title">
+      <p class="mono" data-text="label"></p>
+      <h1 id="hero-title" data-text="headline"></h1>
+      <p class="sub" data-text="subline"></p>
+      <a class="cue mono" href="#about">Scroll to About</a>
+    </section>
+
+    <section id="about" aria-labelledby="about-h">
+      <div class="head"><p class="mono">01 / About</p><span class="rule"></span></div>
+      <h2 id="about-h">About</h2>
+      <div class="prose" id="about-body"></div>
+    </section>
+
+    <section id="skills" aria-labelledby="skills-h">
+      <div class="head"><p class="mono">02 / Toolbox</p><span class="rule"></span></div>
+      <h2 id="skills-h">Toolbox</h2>
+      <p class="intro" data-text="skillsIntro"></p>
+      <div id="skills-body"></div>
+      <p class="legend mono">○ learning &nbsp; ◐ familiar &nbsp; ● used in a project</p>
+    </section>
+
+    <section id="exploring" aria-labelledby="bench-h">
+      <div class="head"><p class="mono">03 / On the Bench</p><span class="rule"></span></div>
+      <h2 id="bench-h">On the Bench</h2>
+      <p class="intro" data-text="benchIntro"></p>
+      <ul class="bench" id="bench-body"></ul>
+    </section>
+
+    <section id="projects" class="inverted" aria-labelledby="proj-h">
+      <div class="head"><p class="mono">04 / Projects</p><span class="rule"></span></div>
+      <h2 id="proj-h">Projects</h2>
+      <p class="intro" data-text="projectsIntro"></p>
+      <ul class="slots" id="projects-body"></ul>
+      <p class="caption mono" data-text="projectsCaption"></p>
+    </section>
+
+    <section id="contact" aria-labelledby="contact-h">
+      <div class="head"><p class="mono">05 / Contact</p><span class="rule"></span></div>
+      <h2 id="contact-h">Contact</h2>
+      <p class="intro" data-text="contactText"></p>
+      <ul class="links" id="contact-body"></ul>
+    </section>
+  </main>
+
+  <footer><p class="mono" data-text="footer"></p></footer>
+  <noscript><p style="padding:1rem">This site fills its text from JavaScript. Please enable it to read the content.</p></noscript>
+
+  <script src="content.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
